@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { GrayText } from "../text/GrayText";
+import { truncateString } from "@/app/helpers/textHelpers";
 
 export type TableCellProps = {
   children: string | ReactNode;
@@ -28,7 +29,15 @@ export const Table: React.FC<TableProps> = ({ headers, tableData }) => {
           <tr key={index}>
             {row.map((cell, index) => (
               <TableCell key={index}>
-                {cell ?? <GrayText>Data unavailable</GrayText>}
+                {cell ? (
+                  Array.isArray(cell) ? (
+                    truncateString(cell.join(", "))
+                  ) : (
+                    cell
+                  )
+                ) : (
+                  <GrayText>Data unavailable</GrayText>
+                )}
               </TableCell>
             ))}
           </tr>
@@ -43,8 +52,8 @@ const TableCell: React.FC<TableCellProps> = ({
   isHeader = false,
 }) => {
   return isHeader ? (
-    <th className="border-gray-400 border-1">{children}</th>
+    <th className="border-gray-400 border-1 py-4">{children}</th>
   ) : (
-    <td className="border-gray-400 border-1">{children}</td>
+    <td className="text-center border-gray-400 border-1 py-4">{children}</td>
   );
 };
