@@ -1,5 +1,5 @@
 import { getErrorMessageByStatusCode } from "@/app/helpers/errorHelper";
-import { API, KEY } from "@/constants";
+import { API } from "@/constants";
 import { WhoisRecord } from "@/types";
 import { useEffect, useState } from "react";
 
@@ -12,7 +12,7 @@ const useFetchWhois = (search: string | null, options: RequestInit) => {
     const fetchData = async () => {
       try {
         if (!!search) {
-          const url = `${API}?apiKey=${KEY}&domainName=${search}&outputFormat=JSON`;
+          const url = `${API}?domainName=${search}`;
           setIsLoading(true);
           const res = await fetch(`${url}`, options);
 
