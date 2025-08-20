@@ -13,7 +13,7 @@ export const RoundedButton: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={`rounded-full bg-blue-900 ${className}`}
+      className={`flex gap-2 text-white justify-center items-center hover:bg-blue-800 rounded-full w-full bg-blue-900 ${className}`}
       onClick={() => handleOnClick()}
     >
       {children}

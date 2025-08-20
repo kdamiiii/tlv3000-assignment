@@ -1,3 +1,4 @@
+import { getErrorMessageByStatusCode } from "@/app/helpers/errorHelper";
 import { API, KEY } from "@/constants";
 import { WhoisRecord } from "@/types";
 import { useEffect, useState } from "react";
@@ -15,7 +16,10 @@ const useFetchWhois = (search: string | null, options: RequestInit) => {
           setIsLoading(true);
           const res = await fetch(`${url}`, options);
 
-          if (!res.ok) throw new Error((await res.json()).message);
+          if (!res.ok)
+            throw new Error(
+              getErrorMessageByStatusCode(res.status as unknown as string)
+            );
 
           const result = await res.json();
           setData(result.WhoisRecord);

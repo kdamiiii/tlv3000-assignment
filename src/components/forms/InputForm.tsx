@@ -15,7 +15,7 @@ export const InputForm: React.FC<InputFormProps> = ({
 }) => {
   return (
     <input
-      className={`bg-white rounded-full text-black p-2 ${className}`}
+      className={`bg-white border-gray-400 border-1 rounded-full text-black p-2 ${className}`}
       type={type}
       value={value ?? ""}
       onChange={(e) => onChange(e.target.value)}
